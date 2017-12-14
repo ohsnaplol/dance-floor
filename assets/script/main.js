@@ -11,6 +11,7 @@ firebase.initializeApp(config)
 var database = firebase.database()
 
 $(document).ready(function() {
+  fillGifSelect('dance', 20)
   $("#danceFloorImg").on("click", function(event) {
     addImage(event.originalEvent.clientX,event.originalEvent.clientY, './assets/img/dancetest.gif');
   })
@@ -23,4 +24,18 @@ function addImage(x, y, url) {
   newImage.css('left', x + 'px')
   newImage.css('top', y + 'px')
   $('body').append(newImage)
+}
+
+function fillGifSelect(title, count, offset) {
+  var queryURL = `https://api.giphy.com/v1/stickers/search?q=${title}&limit=${count}&offset=${offset}&api_key=dc6zaTOxFJmzC`
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response) {
+    for (var i = 0; i < count; i++) {
+      $("#gifSelect").append(`
+        <img class='img-thumbnail selectableGif' src='${response.data[i].images.original.url}'>
+      `);
+    }
+  });
 }
