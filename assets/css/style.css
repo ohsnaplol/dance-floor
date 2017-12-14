@@ -13,3 +13,8 @@ body {
   pointer-events: none;
   height: 150px;
 }
+
+.selectableGif {
+  height: 150px;
+  background-color: transparent;
+}
