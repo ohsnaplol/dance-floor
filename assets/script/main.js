@@ -12,6 +12,15 @@ var database = firebase.database()
 
 $(document).ready(function() {
   $("#danceFloorImg").on("click", function(event) {
-    console.log("x: " + event.originalEvent.screenX + " y: " + event.originalEvent.screenY);
+    addImage(event.originalEvent.clientX,event.originalEvent.clientY, './assets/img/dancetest.gif');
   })
 })
+
+function addImage(x, y, url) {
+  var newImage = $('<img>')
+  newImage.attr('class', 'overlays')
+  newImage.attr('src', url)
+  newImage.css('left', x + 'px')
+  newImage.css('top', y + 'px')
+  $('body').append(newImage)
+}

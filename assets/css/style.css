@@ -4,5 +4,12 @@ body {
 
 #danceFloorImg {
   display: block;
+  position: relative;
   margin: auto;
+}
+
+.overlays {
+  position: absolute;
+  pointer-events: none;
+  height: 150px;
 }
