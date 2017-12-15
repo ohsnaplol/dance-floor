@@ -11,23 +11,56 @@ firebase.initializeApp(config)
 var database = firebase.database()
 
 $(document).ready(function() {
-  var playerGifURL = './assets/img/dancetest.gif';
+  var playerGifURL = './assets/img/dancetest.gif'
+  var playerKey = null
   // Put 20 dance gifs into the gifSelect div
   fillGifSelect('dance', 20)
-  // When they click the dancefloor, add an image with the url playerGifURL
   $("#danceFloorImg").on("click", function(event) {
-    addImage(event.originalEvent.clientX,event.originalEvent.clientY, playerGifURL);
+    var mouseClickX = event.originalEvent.clientX
+    var mouseClickY = event.originalEvent.clientY
+    // get snapshot of database
+    database.ref().once('value', function(snapshot) {
+      // if snapshot of the database has our player's key, he must be on the dance floor
+      if (playerKey !== null && snapshot.hasChild(playerKey)) {
+        console.log(`Set ${playerKey} location to x: ${mouseClickX},y: ${mouseClickY}`)
+        // set new location in database
+        database.ref().child(playerKey).update({
+          location: {
+            x: mouseClickX,
+            y: mouseClickY
+          }
+        })
+      } else { // if snapshot doesn't have playerKey
+        // put new player in db
+        var playerRef = database.ref().push({
+          gifURL: playerGifURL,
+          location: {
+            x: mouseClickX,
+            y: mouseClickY
+          }
+        })
+        playerKey = playerRef.key // Keep track of which image they own through the database key
+        console.log(`playerKey = ${playerKey}`)
+      }
+    })
   })
-  // When clicking a gif from the gifSelect div, set our playerGifURL to
+  // When clicking a gif from the gifSelect div, set our playerGifURL to url of gif they clicked
   $("#gifSelect").on('click', '.selectableGif', function() {
      playerGifURL = $(this).attr('src')
+     if (playerKey !== null) {
+       database.ref().child(playerKey).update({
+         gifURL: playerGifURL
+       })
+       console.log(`${playerKey} gifURL set to ${playerGifURL}`)
+     }
   })
 })
 /**
  * adds an image to the body with the given x y coordinates and url of the image
  */
-function addImage(x, y, url) {
+function addImage(x, y, url, id) {
   var newImage = $('<img>')
+  newImage.data('id', id)
   newImage.attr('class', 'overlays')
   newImage.attr('src', url)
   newImage.css('left', x + 'px')
