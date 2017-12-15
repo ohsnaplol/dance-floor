@@ -1,12 +1,12 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Dancefloor</title>
     <!-- Bootstrap File -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Firebase -->
@@ -14,12 +14,24 @@
     <script src="./assets/script/main.js"></script>
 
   </head>
+  <div class="container">
+      <div class="jumbotron" style="background-color: green; color: white;">
+        <div class="container"> 
+        <h1 class="text-center"><strong>GET ON THE DANCE FLOOR</strong></h1> 
+        </div>
+      </div>
+  </div>
   <body>
     <div class="container">
-      <div class="row">
-        <img src="./assets/img/dancefloor.jpg" id="danceFloorImg">
+      <div class="row" style="display:none;">
+       <img src="./assets/img/dancefloor.jpg" id="danceFloorImg">
       </div>
-      <div class="row" id="gifSelect"></div>
+        <section style="display:inline-grid;">
+        <div class="row" id="gifSelect">
+        <button type="button" class="btn btn-danger btn-lg btn-block">Get out on the Dancefloor!</button>
+        </div>
+        </section>
     </div>
+
   </body>
 </html>
