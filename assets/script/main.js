@@ -11,12 +11,16 @@ firebase.initializeApp(config)
 var database = firebase.database()
 
 $(document).ready(function() {
+  // Put 20 dance gifs into the gifSelect div
   fillGifSelect('dance', 20)
+  // When they click the dancefloor,
   $("#danceFloorImg").on("click", function(event) {
     addImage(event.originalEvent.clientX,event.originalEvent.clientY, './assets/img/dancetest.gif');
   })
 })
-
+/**
+ * adds an image to the body with the given x y coordinates and url of the image
+ */
 function addImage(x, y, url) {
   var newImage = $('<img>')
   newImage.attr('class', 'overlays')
@@ -25,7 +29,10 @@ function addImage(x, y, url) {
   newImage.css('top', y + 'px')
   $('body').append(newImage)
 }
-
+/**
+ * Adds gifs to the gifSelect div. Title is theme of gifs, count is how many
+ * gifs are added and offset changes the index giphy starts at
+ */
 function fillGifSelect(title, count, offset) {
   var queryURL = `https://api.giphy.com/v1/stickers/search?q=${title}&limit=${count}&offset=${offset}&api_key=dc6zaTOxFJmzC`
   $.ajax({
