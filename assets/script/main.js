@@ -11,11 +11,16 @@ firebase.initializeApp(config)
 var database = firebase.database()
 
 $(document).ready(function() {
+  var playerGifURL = './assets/img/dancetest.gif';
   // Put 20 dance gifs into the gifSelect div
   fillGifSelect('dance', 20)
-  // When they click the dancefloor,
+  // When they click the dancefloor, add an image with the url playerGifURL
   $("#danceFloorImg").on("click", function(event) {
-    addImage(event.originalEvent.clientX,event.originalEvent.clientY, './assets/img/dancetest.gif');
+    addImage(event.originalEvent.clientX,event.originalEvent.clientY, playerGifURL);
+  })
+  // When clicking a gif from the gifSelect div, set our playerGifURL to
+  $("#gifSelect").on('click', '.selectableGif', function() {
+     playerGifURL = $(this).attr('src')
   })
 })
 /**
