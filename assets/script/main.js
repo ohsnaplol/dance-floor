@@ -12,6 +12,7 @@ var database = firebase.database()
 
 $(document).ready(function() {
   var playerGifURL = './assets/img/dancetest.gif'
+  // var playerKey = sessionStorage.getItem('playerKey')
   var playerKey = null
   // Put 20 dance gifs into the gifSelect div
   fillGifSelect('dance', 20)
@@ -39,8 +40,8 @@ $(document).ready(function() {
             y: mouseClickY
           }
         })
-        playerKey = playerRef.key // Keep track of which image they own through the database key
-        console.log(`playerKey = ${playerKey}`)
+        // sessionStorage.setItem('playerKey', playerRef.key) // Keep track of which image they own through the database key
+        playerKey = playerRef.key
       }
     })
   })
@@ -54,6 +55,16 @@ $(document).ready(function() {
        console.log(`${playerKey} gifURL set to ${playerGifURL}`)
      }
   })
+
+  /**
+   * When user closes window, if user has a playerKey, remove it from the database.
+   * Session storage should automatically clear when they've closed the window too.
+   */
+  $(window).unload(function() {
+    if (playerKey !== null) {
+      database.ref().child(playerKey).remove()
+    }
+  })
 })
 
 /**
@@ -64,8 +75,21 @@ database.ref().on('child_added', function(snapshot) {
   addImage(user.location.x, user.location.y, user.gifURL, snapshot.ge.path.n[0])
 })
 
+/**
+ * When someone changes position or image, update it for everyone
+ */
 database.ref().on('child_changed', function(snapshot) {
+  console.log(snapshot.val().gifURL)
+  $(`#${snapshot.ge.path.n[0]}`).attr('src', snapshot.val().gifURL)
   moveImageWithID(snapshot.ge.path.n[0], snapshot.val().location.x, snapshot.val().location.y)
+})
+
+/**
+ * When a child is deleted, remove their image from the dance floor
+ */
+database.ref().on('child_removed', function(deletedSnapshot) {
+  console.log(`deleting ${deletedSnapshot.ge.path.n[0]}`)
+  removeImage(deletedSnapshot.ge.path.n[0])
 })
 
 function moveImageWithID(id, x, y) {
@@ -86,6 +110,10 @@ function addImage(x, y, url, id) {
   newImage.css('left', x + 'px')
   newImage.css('top', y + 'px')
   $('body').append(newImage)
+}
+
+function removeImage(id) {
+  $(`#${id}`).remove()
 }
 /**
  * Adds gifs to the gifSelect div. Title is theme of gifs, count is how many
