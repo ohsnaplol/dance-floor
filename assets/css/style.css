@@ -2,10 +2,10 @@ body {
   background-color: black;
 }
 
-#danceFloorImg {
-  display: block;
-  position: relative;
+#dancefloorContainer {
   margin: auto;
+  width: 679px;
+  position: relative;
 }
 
 .overlays {

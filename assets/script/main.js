@@ -17,8 +17,9 @@ $(document).ready(function() {
   // Put 20 dance gifs into the gifSelect div
   fillGifSelect('dance', 20)
   $("#danceFloorImg").on("click", function(event) {
-    var mouseClickX = event.originalEvent.clientX
-    var mouseClickY = event.originalEvent.clientY
+    var offs = $('#danceFloorImg').offset();
+    var mouseClickX = event.clientX - offs.left
+    var mouseClickY = event.clientY - offs.top
     // get snapshot of database
     database.ref().once('value', function(snapshot) {
       // if snapshot of the database has our player's key, he must be on the dance floor
@@ -109,7 +110,7 @@ function addImage(x, y, url, id) {
   newImage.attr('src', url)
   newImage.css('left', x + 'px')
   newImage.css('top', y + 'px')
-  $('body').append(newImage)
+  $('#dancefloorContainer').append(newImage)
 }
 
 function removeImage(id) {
