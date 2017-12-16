@@ -74,7 +74,7 @@ function moveImageWithID(id, x, y) {
  */
 function addImage(x, y, url, id) {
   var newImage = $('<img>')
-  newImage.data('id', id)
+  jQuery.data(newImage, 'id', id)
   newImage.attr('class', 'overlays')
   newImage.attr('src', url)
   newImage.css('left', x + 'px')
