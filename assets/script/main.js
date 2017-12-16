@@ -55,6 +55,20 @@ $(document).ready(function() {
      }
   })
 })
+
+/**
+ * Every time a child is added to the database, add it to the dancefloor
+ */
+database.ref().on('child_added', function(snapshot) {
+  var user = snapshot.val()
+  // console.log(snapshot.parent().name())
+  addImage(user.location.x, user.location.y, user.gifURL, user)
+})
+
+function moveImageWithID(id, x, y) {
+  $(`#${id}`)
+}
+
 /**
  * adds an image to the body with the given x y coordinates and url of the image
  */
