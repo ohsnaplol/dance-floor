@@ -64,10 +64,14 @@ database.ref().on('child_added', function(snapshot) {
   addImage(user.location.x, user.location.y, user.gifURL, snapshot.ge.path.n[0])
 })
 
+database.ref().on('child_changed', function(snapshot) {
+  moveImageWithID(snapshot.ge.path.n[0], snapshot.val().location.x, snapshot.val().location.y)
+})
+
 function moveImageWithID(id, x, y) {
   $(`#${id}`).animate({
-    newImage.css('left', x + 'px')
-    newImage.css('top', y + 'px')
+    'left': x + 'px',
+    'top': y + 'px'
   }, 'fast')
 }
 
@@ -76,7 +80,6 @@ function moveImageWithID(id, x, y) {
  */
 function addImage(x, y, url, id) {
   var newImage = $('<img>')
-  // jQuery.data(newImage, 'key', id)
   newImage.attr('id', id)
   newImage.attr('class', 'overlays')
   newImage.attr('src', url)
