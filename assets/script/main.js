@@ -48,6 +48,13 @@ $(document).ready(function() {
     })
   })
 
+  /**
+   * Prevent user from dragging the dance floor image
+   */
+  $('#danceFloorImg').on('dragstart', function(event) {
+    event.preventDefault()
+  })
+
   $('#prevBtn').on('click', function() {
     if (offset > 0) {
       offset -= 20
