@@ -80,8 +80,10 @@ database.ref().on('child_added', function(snapshot) {
  * When someone changes position or image, update it for everyone
  */
 database.ref().on('child_changed', function(snapshot) {
-  console.log(snapshot.val().gifURL)
-  $(`#${snapshot.ge.path.n[0]}`).attr('src', snapshot.val().gifURL)
+  // only update image if it is different from what is in db
+  if ($(`#${snapshot.ge.path.n[0]}`).attr('src') !== snapshot.val().gifURL) {
+    $(`#${snapshot.ge.path.n[0]}`).attr('src', snapshot.val().gifURL)
+  }
   moveImageWithID(snapshot.ge.path.n[0], snapshot.val().location.x, snapshot.val().location.y)
 })
 
