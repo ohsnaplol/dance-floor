@@ -14,8 +14,9 @@ $(document).ready(function() {
   var playerGifURL = './assets/img/dancetest.gif'
   // var playerKey = sessionStorage.getItem('playerKey')
   var playerKey = null
+  var offset = 0
   // Put 20 dance gifs into the gifSelect div
-  fillGifSelect('dance', 20)
+  fillGifSelect('dance', 20, offset)
   $("#danceFloorImg").on("click", function(event) {
     var offs = $('#danceFloorImg').offset();
     var mouseClickX = event.clientX - offs.left
@@ -46,6 +47,21 @@ $(document).ready(function() {
       }
     })
   })
+
+  $('#prevBtn').on('click', function() {
+    if (offset > 0) {
+      offset -= 20
+      $('#gifSelect').empty()
+      fillGifSelect('dance', 20, offset)
+    }
+  })
+
+  $('#nextBtn').on('click', function() {
+    offset += 20
+    $('#gifSelect').empty()
+    fillGifSelect('dance', 20, offset)
+  })
+
   // When clicking a gif from the gifSelect div, set our playerGifURL to url of gif they clicked
   $("#gifSelect").on('click', '.selectableGif', function() {
      playerGifURL = $(this).attr('src')
