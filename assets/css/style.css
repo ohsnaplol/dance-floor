@@ -8,6 +8,10 @@ body {
   position: relative;
 }
 
+#gifSelectPanel {
+  background: none;
+}
+
 .overlays {
   position: absolute;
   pointer-events: none;
@@ -17,4 +21,7 @@ body {
 .selectableGif {
   height: 150px;
   background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
 }
