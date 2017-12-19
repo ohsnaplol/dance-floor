@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>Dancefloor</title>
   <!-- Bootstrap File -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css">
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -38,12 +38,44 @@
     </div>
   </div>
 
-  <div class="container">
-    <div id="dancefloorContainer" style="display:none;">
-      <img src="./assets/img/dancefloor.jpg" id="danceFloorImg">
+<div class="container">
+    <div class="row">
+      <div id="dancefloorContainer" style="display:none;">
+        <img src="./assets/img/dancefloor.jpg" id="danceFloorImg">
+      </div>
     </div>
-    <div class="row" id="gifSelect"></div>
-    <iframe displaywidth="560" height="200" src="https://www.youtube.com/embed/Pec5ci8gKMg?autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    <div class="row card text-white bg-dark mb-3" id="gifSelectPanel">
+      <div class="card-header">Select your avatar, click on the dance floor to move!</div>
+      <div class="card-body">
+        <div class="row">
+          <form class="form-inline" id="searchForm">
+            <div class="col-auto">
+              <input type="text" class="form-control mb-2 mb-sm-0" id="filterInput" placeholder="Filter gifs by name...">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
+          <div class="col-auto">
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-secondary active numResults">20</button>
+              <button type="button" class="btn btn-outline-secondary numResults">40</button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center" id="prevNextBtnGroup">
+          <div class="btn-group">
+            <button class="btn btn-outline-light" id="prevBtn">Previous</button>
+            <button class="btn btn-outline-light" id="nextBtn">Next</button>
+          </div>
+        </div>
+        <div id="gifSelect"></div>
+      </div>
+    </div>
+    <div class="row">
+      <iframe displaywidth="560" height="200" src="https://www.youtube.com/embed/Pec5ci8gKMg?autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
   </div>
 </body>
 </html>
+

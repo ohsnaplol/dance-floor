@@ -1,12 +1,44 @@
+html {
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: rgb(51, 51, 255);
+
+  -webkit-animation: 2s linear 0s infinite alternate changeLights;
+  animation: 2s linear 0s infinite alternate changeLights;
+}
+
+@-webkit-keyframes changeLights {
+  from { background-blend-mode: darken; }
+  to {   background-blend-mode: none; }  }
+@keyframes changeLights {
+  from { background-blend-mode: darken; }
+  to {   background-blend-mode: none; }  }
 
 body {
-  background-color: black;
+  background: none;
 }
 
 #dancefloorContainer {
   margin: auto;
-  width: 679px;
+  width: 900px;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#danceFloorImg {
+  width: 900px
+}
+
+#gifSelectPanel {
+  background: none;
+}
+
+#prevNextBtnGroup {
+  margin-top: 20px;
 }
 
 .overlays {
@@ -18,4 +50,7 @@ body {
 .selectableGif {
   height: 150px;
   background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
 }
