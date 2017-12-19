@@ -12,6 +12,10 @@ body {
   background: none;
 }
 
+#prevNextBtnGroup {
+  margin-top: 20px;
+}
+
 .overlays {
   position: absolute;
   pointer-events: none;
