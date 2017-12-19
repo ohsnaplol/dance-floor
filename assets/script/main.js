@@ -16,8 +16,9 @@ $(document).ready(function() {
   var playerKey = null
   var offset = 0
   var numResults = 20
-  // Put 20 dance gifs into the gifSelect div
-  fillGifSelect('dance', numResults, offset)
+  var searchModifier = ""
+  // Give fillGifSelect default values
+  fillGifSelect(searchModifier, numResults, offset)
   $("#danceFloorImg").on("click", function(event) {
     var offs = $('#danceFloorImg').offset();
     var mouseClickX = event.clientX - offs.left
@@ -56,9 +57,16 @@ $(document).ready(function() {
     event.preventDefault()
   })
 
-/**
- * Parses the number in the HTML element and uses that to modify offset, numResults, and
- */
+  $('#searchForm').on('submit', function(event) {
+    event.preventDefault()
+    offset = 0
+    searchModifier = $('#filterInput').val()
+    fillGifSelect(searchModifier, numResults, offset)
+  })
+
+  /**
+  * Parses the number in the HTML element and uses that to modify numResults
+  */
   $('.numResults').on('click', function() {
     var numberInElement = parseInt($(this).text())
     // If what they clicked is different from what was previously chosen,
@@ -66,20 +74,20 @@ $(document).ready(function() {
       $('.numResults').removeClass('active') // de-highlight old number
       $(this).addClass('active') // highlight the number they chose
       numResults = numberInElement
-      fillGifSelect('dance', numResults, offset)
+      fillGifSelect(searchModifier, numResults, offset)
     }
   })
 
   $('#prevBtn').on('click', function() {
     if (offset > 0) {
       offset -= numResults
-      fillGifSelect('dance', numResults, offset)
+      fillGifSelect(searchModifier, numResults, offset)
     }
   })
 
   $('#nextBtn').on('click', function() {
     offset += numResults
-    fillGifSelect('dance', numResults, offset)
+    fillGifSelect(searchModifier, numResults, offset)
   })
 
   // When clicking a gif from the gifSelect div, set our playerGifURL to url of gif they clicked
@@ -155,12 +163,12 @@ function removeImage(id) {
   $(`#${id}`).remove()
 }
 /**
- * Adds gifs to the gifSelect div. Title is theme of gifs, count is how many
- * gifs are added and offset changes the index giphy starts at
+ * Adds gifs to the gifSelect div. Now always returns dancing gifs modifier,
+ * count is how many gifs are added and offset changes the index giphy starts at
  */
 function fillGifSelect(title, count, offset) {
   $('#gifSelect').empty()
-  var queryURL = `https://api.giphy.com/v1/stickers/search?q=${title}&limit=${count}&offset=${offset}&api_key=dc6zaTOxFJmzC`
+  var queryURL = `https://api.giphy.com/v1/stickers/search?q=dance+${title}&limit=${count}&offset=${offset}&api_key=dc6zaTOxFJmzC`
   $.ajax({
     url: queryURL,
     method: "GET"
