@@ -23,21 +23,22 @@
     <div class="row card text-white bg-dark mb-3" id="gifSelectPanel">
       <div class="card-header">Select your avatar, click on the dance floor to move!</div>
       <div class="card-body">
-        <form class="form-inline">
+        <div class="row">
+          <form class="form-inline">
+            <div class="col-auto">
+              <input type="text" class="form-control mb-2 mb-sm-0" id="filterInput" placeholder="Filter gifs by name...">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
           <div class="col-auto">
-            <input type="text" class="form-control mb-2 mb-sm-0" id="filterInput" placeholder="Filter gifs by name...">
-          </div>
-          <div class="col-auto">
-            <div class="btn-group" id="resultsPerPage">
-              <button type="button" class="btn btn-outline-secondary active">20</button>
-              <button type="button" class="btn btn-outline-secondary">40</button>
-              <button type="button" class="btn btn-outline-secondary">60</button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-secondary active numResults">20</button>
+              <button type="button" class="btn btn-outline-secondary numResults">40</button>
             </div>
           </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Search</button>
-          </div>
-        </form>
+        </div>
         <div class="text-center" id="prevNextBtnGroup">
           <div class="btn-group">
             <button class="btn btn-outline-light" id="prevBtn">Previous</button>
