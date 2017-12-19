@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,32 @@
   <script src="./assets/script/main.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container">  
+     <div class="jumbotron" style="background-color: purple; color: white;">
+        <div class="container"> 
+        <h1 class="text-center"><strong>GET DOWN ON THE DANCE FLOOR</strong></h1> 
+        </div>
+     </div>
+  </div>  
+
+  <div id ="intro" class="container">
+    
     <div class="row">
-      <div id="dancefloorContainer">
+     <div class="col-lg-6"> 
+        <div class="jumbotron">
+          <h1>INSTRUCTIONS</h1> 
+          <p>Pick a GIF below, then click on the velvet rope to the right to enter the club! Once inside, click anywhere on the dance floor to move. If you ever feel like changing your avatar simply click on a different GIF</p> 
+        </div>
+     </div>
+     <div class="col-lg-6"> 
+        <input type="image" id="start" src="./assets/img/velvetRope.jpg" class="img-responsive" width="600">
+     </div>
+    </div>
+  </div>
+
+<div class="container">
+    <div class="row">
+      <div id="dancefloorContainer" style="display:none;">
         <img src="./assets/img/dancefloor.jpg" id="danceFloorImg">
       </div>
     </div>
@@ -54,3 +78,4 @@
   </div>
 </body>
 </html>
+

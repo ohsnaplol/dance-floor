@@ -1,3 +1,4 @@
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyAU1zkwv38jAxzuRXg7dDAAbv_Q8GqHo7k",
@@ -179,4 +180,13 @@ function fillGifSelect(title, count, offset) {
       `);
     }
   });
+/* Toggle   */
+  $("#start").click(function(){
+      $("#dancefloorContainer").toggle();
+          }); 
+  $("#start").click(function(){
+      $("#intro").toggle();
+          }); 
 }
+
+
