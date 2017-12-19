@@ -1,5 +1,15 @@
+html {
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: rgb(51, 51, 255);
+  background-blend-mode:darken;
+}
+
 body {
-  background-color: black;
+  background: none;
 }
 
 #dancefloorContainer {
