@@ -21,12 +21,22 @@ body {
   background: none;
 }
 
+#header {
+  background-color: purple;
+  color: white;
+  padding: 10px;
+}
+
+#instructions {
+  background-color: blue;
+  color: white;
+  padding: 20px;
+}
+
 #dancefloorContainer {
   margin: auto;
   width: 900px;
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 20px;
 }
 
 #danceFloorImg {
@@ -34,6 +44,7 @@ body {
 }
 
 #gifSelectPanel {
+  margin-top: 20px;
   background: none;
 }
 
