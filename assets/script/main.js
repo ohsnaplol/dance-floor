@@ -51,6 +51,12 @@ $(document).ready(function() {
     })
   })
 
+  /* Toggle dancefloor on rope click  */
+  $("#start").click(function(){
+    $("#dancefloorContainer").toggle();
+    $("#intro").toggle();
+  });
+
   /**
    * Prevent user from dragging the dance floor image
    */
@@ -180,13 +186,4 @@ function fillGifSelect(title, count, offset) {
       `);
     }
   });
-/* Toggle   */
-  $("#start").click(function(){
-      $("#dancefloorContainer").toggle();
-          }); 
-  $("#start").click(function(){
-      $("#intro").toggle();
-          }); 
 }
-
-
