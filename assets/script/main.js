@@ -181,12 +181,10 @@ function fillGifSelect(title, count, offset) {
     }
   });
 /* Toggle   */
-  $("#start").click(function(){
-      $("#dancefloorContainer").toggle();
-          }); 
-  $("#start").click(function(){
-      $("#intro").toggle();
-          }); 
+$("#start").click(function(){
+    $("#dancefloorContainer").toggle();
+});
+$("#start").click(function(){
+    $("#intro").toggle();
+});
 }
-
-
